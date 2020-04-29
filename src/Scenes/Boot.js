@@ -30,6 +30,12 @@ export default class BootScene extends Phaser.Scene {
       }
     );
 
+    //load playerGril spritesheet
+    this.load.spritesheet('playerGirl', '/assets/images/playerGirl.png', {
+      frameWidth: 16,
+      frameHeight: 17,
+    });
+
     //load in the portal sprite
     this.load.image('portal', '/assets/images/raft.png');
 
@@ -38,6 +44,16 @@ export default class BootScene extends Phaser.Scene {
 
     //load arrow sprite
     this.load.image('arrow', '/assets/images/arrow.png');
+
+    //load audio
+    this.load.audio('theme', [
+      '/assets/sfx/Visager_-_12_-_Title_Theme_Loop.mp3',
+    ]);
+    this.load.audio('releaseArrow', ['/assets/sfx/shoot.ogg']);
+    this.load.audio('enemyHurt', ['/assets/sfx/Hurt1.ogg']);
+    this.load.audio('enemyDie', ['/assets/sfx/Hurt4.ogg']);
+    this.load.audio('femaleHurt', ['/assets/sfx/femaleHurt.ogg']);
+    this.load.audio('coinFall', ['/assets/sfx/coin-fall-1.ogg']);
   }
 
   create() {

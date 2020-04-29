@@ -7,6 +7,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     //super receives the scene, the character's x and y position, the spritesheet key, and sprite frame
     super(scene, x, y, 'characters', frame);
     this.scene = scene;
+    this.health = 3;
 
     //enable physics
     this.scene.physics.world.enable(this);
@@ -14,7 +15,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     //add the player to the scene
     this.scene.add.existing(this);
 
-    //scale player
+    //scale enemy
     this.setScale(4);
 
     //move our enemy
@@ -28,10 +29,14 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 
   loseHealth() {
     this.health--;
+
     this.tint = 0xff0000;
     if (this.health === 0) {
+      this.scene.enemyDie.play();
+      this.timeEvent.destroy();
       this.destroy();
     } else {
+      this.scene.enemyHurt.play();
       this.scene.time.addEvent({
         delay: 200,
         callback: () => {

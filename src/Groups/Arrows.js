@@ -62,4 +62,11 @@ export default class Arrows extends Phaser.Physics.Arcade.Group {
       },
     });
   }
+
+  enemyCollision(arrow, enemy) {
+    arrow.active = false;
+    arrow.visible = false;
+    arrow.disableBody();
+    enemy.loseHealth();
+  }
 }
